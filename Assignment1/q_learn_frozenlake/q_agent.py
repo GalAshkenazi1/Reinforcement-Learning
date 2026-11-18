@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 class Q_Agent():
     def __init__(self, n_actions, n_states, alpha, gamma, epsilon_0, decay_rate = 1):
@@ -23,11 +22,3 @@ class Q_Agent():
             return np.random.choice(self.n_actions)  # Explore
         else:
             return np.argmax(self.q_table[state])  # Exploit
-
-    def plot_q_table(self, iteration):
-        f =plt.imshow(self.q_table, cmap='hot')
-        f.colorbar()
-        f.title("Q-Table Heatmap")
-        f.xlabel("Actions")
-        f.ylabel("States")
-        return f
