@@ -13,8 +13,7 @@ env = gym.make(
         success_rate=1.0/3.0,
         reward_schedule=REWARD_SCH,
         max_episode_steps=MAX_STEPS_EPISODE,
-        render_mode="human"
-    )
+ )
 env.reset()
 
 # Agent
@@ -36,8 +35,6 @@ episode_steps = []
 # Q-learning loop
 for episode in range(N_EPISODE):
     print(f"Episode {episode + 1}/{N_EPISODE}")
-    if episode % 100 == 0:
-        env.render()
     s, _ = env.reset()
     done = False
     total_reward = 0
@@ -57,7 +54,6 @@ for episode in range(N_EPISODE):
                                     + agent.alpha * target
             s = s_next
         reached_goal = terminated and r == REWARD_SCH[0]
-    env.close()
 
     episode_rewards.append(total_reward)
     episode_steps.append(n_steps if reached_goal else MAX_STEPS_EPISODE)
